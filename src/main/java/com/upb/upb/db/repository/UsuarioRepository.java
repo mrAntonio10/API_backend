@@ -13,6 +13,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query(" SELECT u FROM Usuario u " +
             " WHERE u.estado = false AND " +
-            " u.nombreUsuario = :nombre AND u.password = :password ")
+            " u.nombreUsuario = :nombreUsuario AND u.password = :password ")
     Optional<Usuario> findByNombreAndAndPasswordAndEstadoFalse(@Param("nombreUsuario") String nombreUsuario, @Param("password") String password);
 }

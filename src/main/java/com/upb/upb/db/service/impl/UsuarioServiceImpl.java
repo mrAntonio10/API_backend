@@ -54,8 +54,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Long findByUsernameAndPassword(String nombre, String password) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByNombreAndAndPasswordAndEstadoFalse(nombre, password);
+    public Long findByUsernameAndPassword(String nombreUsuario, String password) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByNombreAndAndPasswordAndEstadoFalse(nombreUsuario, password);
         if(!usuarioOpt.isPresent()){
             throw new NoSuchElementException("Usuario no encontrada");
         }
