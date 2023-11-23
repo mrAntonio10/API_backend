@@ -21,8 +21,3 @@ ENTRYPOINT ["java", "-jar", "demo.jar"]
 
 ##https://www.youtube.com/watch?v=9MR6VMZ9MBo&t=905s
 #FROM node:12.22.12
-##WORKDIR ./app
-#COPY . .
-#EXPOSE 8086
-#
-#CMD ["npm","run","start"]
