@@ -7,5 +7,5 @@ public interface UsuarioService {
 
     Long save(Usuario usuarioDto);
 
-    Boolean findByUsernameAndPassword(String nombre, String password);
+    Long findByUsernameAndPassword(String nombre, String password);
 }

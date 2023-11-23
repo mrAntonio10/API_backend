@@ -24,7 +24,7 @@ public class UsuarioController {
 
 
     @GetMapping("/{nombreUsuario}/{password}")
-    public ResponseEntity<Boolean> usuarioFindAll(
+    public ResponseEntity<Long> usuarioFindAll(
             @PathVariable String nombreUsuario,
             @PathVariable String password){
         try{
