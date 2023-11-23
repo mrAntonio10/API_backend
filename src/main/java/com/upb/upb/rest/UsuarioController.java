@@ -42,7 +42,22 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(null);
         }
     }
+    @PostMapping("/logIn")
+    ResponseEntity<Long> logIn(@RequestBody Usuario usuario) {
+        try {
+            return ok(usuarioService.findByUsernameAndPassword(usuario.getNombreUsuario(), usuario.getPassword()));
+        }catch (Exception e){
+            log.info("Error inesperado {}", e);
+            log.info("Error inesperado {}", e);
 
+
+            Map<String, Object> responseBody = new HashMap<>();
+            responseBody.put("mensaje", "Usuario " + usuario.getNombreUsuario() + " no encontrado");
+            responseBody.put("status", HttpStatus.NOT_FOUND.value() + " " + HttpStatus.NOT_FOUND.getReasonPhrase());
+
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
     @PostMapping("")
     ResponseEntity<Long> guardarUsuario(@RequestBody Usuario usuarioNuevo) {
         try {
