@@ -7,7 +7,7 @@
 #CMD ["npm","run","start"]
 
 FROM maven:3.6.3-jdk-8 AS build
-COPY upb/upb .
+COPY API_backend .
 #RUN export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 RUN mvn clean install
 RUN mvn clean package
