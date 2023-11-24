@@ -8,6 +8,6 @@ import lombok.Data;
 public class ResultadosDto {
 
     private long votos;
-    private float porcentaje;
+    private String nombrePartido;
 
 }
