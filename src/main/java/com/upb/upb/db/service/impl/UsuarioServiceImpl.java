@@ -18,8 +18,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-
-
     @Override
     @Transactional
     public Long save(Usuario usuarioDto) {
