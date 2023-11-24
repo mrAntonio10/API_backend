@@ -13,7 +13,7 @@ public interface VotacionRepository  extends JpaRepository<Votacion, Long> {
 
     @Query(" SELECT new com.upb.upb.dto.ResultadosDto(COUNT(v), v.partido.nombre) " +
             "FROM Votacion v " +
-            "WHERE v.partido.nombre = :nombrePartido LIMIT 1")
+            "WHERE v.partido.nombre = :nombrePartido")
     Optional<ResultadosDto> votacionesPorPartido(@Param("nombrePartido") String nombrePartido);
 
     @Query(" SELECT new com.upb.upb.dto.ResultadosDto(COUNT(v), v.partido.nombre)" +
