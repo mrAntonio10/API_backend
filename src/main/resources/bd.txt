@@ -1,0 +1,41 @@
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2012', 'Coca Cola 2l', 5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2013', 'Coca Cola 2l', 5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2014', 'Coca Cola 2l', 6);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2015', 'Coca Cola 2l', 6.2);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2016', 'Coca Cola 2l', 6.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2017', 'Coca Cola 2l', 6.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2018', 'Coca Cola 2l', 6.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2019', 'Coca Cola 2l', 7);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2020', 'Coca Cola 2l', 7);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2021', 'Coca Cola 2l', 8);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2022', 'Coca Cola 2l', 8);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2023', 'Coca Cola 2l', 8);
+
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2012', 'Coca Cola 500ml', 2.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2013', 'Coca Cola 500ml', 2.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2014', 'Coca Cola 500ml', 2.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2015', 'Coca Cola 500ml', 2.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2016', 'Coca Cola 500ml', 3);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2017', 'Coca Cola 500ml', 3);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2018', 'Coca Cola 500ml', 3);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2019', 'Coca Cola 500ml', 3);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2020', 'Coca Cola 500ml', 4);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2021', 'Coca Cola 500ml', 4);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2022', 'Coca Cola 500ml', 4);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2023', 'Coca Cola 500ml', 4);
+
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2012', 'Coca Cola 3l', 10.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2013', 'Coca Cola 3l', 10.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2014', 'Coca Cola 3l', 12.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2015', 'Coca Cola 3l', 12.5);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2016', 'Coca Cola 3l', 13);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2017', 'Coca Cola 3l', 13);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2018', 'Coca Cola 3l', 13);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2019', 'Coca Cola 3l', 13);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2020', 'Coca Cola 3l', 14);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2021', 'Coca Cola 3l', 14);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2022', 'Coca Cola 3l', 12);
+INSERT INTO productos (date, prod, prc) VALUES ('10/01/2023', 'Coca Cola 3l', 12);
+
+SELECT date FROM productos where prod = 'Coca Cola 2l';
+SELECT prc FROM productos where prod = 'Coca Cola 2l';
