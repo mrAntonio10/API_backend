@@ -25,8 +25,19 @@ public class InventarioController {
     //cocacola --> send POST
     @GetMapping("")
     public ResponseEntity<?> inventarioFindAll(){
-            log .info("Solicitud de todos los inventarios");
-            return ok(inventarioService.findAll());
+        try {
+            log.info("Solicitud de todos los inventarios");
+            return  ok(inventarioService.findAll());
+        } catch (Exception e){
+            log.info("Error inesperado {}", e);
+
+
+            Map<String, Object> responseBody = new HashMap<>();
+            responseBody.put("mensaje", "Ocurrio un error con los accesos");
+            responseBody.put("status", HttpStatus.NOT_FOUND.value() + " " + HttpStatus.NOT_FOUND.getReasonPhrase());
+
+            return ResponseEntity.badRequest().body(responseBody);
+        }
     }
     @PostMapping("buscarProducto")
     ResponseEntity<?> buscarProducto(@RequestBody InventarioDto inventario) {
@@ -41,7 +52,7 @@ public class InventarioController {
             responseBody.put("mensaje", "Producto " + inventario.getProducto() + " no encontrado en la base de datos");
             responseBody.put("status", HttpStatus.NOT_FOUND.value() + " " + HttpStatus.NOT_FOUND.getReasonPhrase());
 
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.badRequest().body(responseBody);
         }
     }
 
