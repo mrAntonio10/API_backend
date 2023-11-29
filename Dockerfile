@@ -16,7 +16,7 @@ RUN mvn clean package
 FROM openjdk:8-jdk-alpine
 COPY --from=build /target/upb-0.0.1-SNAPSHOT.jar /demo.jar
 EXPOSE 8086
-ENTRYPOINT ["java", "-jar --spring.profiles.active=marcoro10", "demo.jar"]
+ENTRYPOINT ["java", "-jar", "demo.jar"]
 
 
 ##https://www.youtube.com/watch?v=9MR6VMZ9MBo&t=905s
