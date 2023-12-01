@@ -1,7 +1,7 @@
 package com.upb.upb.rest;
 
 import com.upb.upb.db.service.InventarioService;
-import com.upb.upb.dto.InventarioDto;
+import com.upb.upb.request.InventarioRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,10 +40,10 @@ public class InventarioController {
         }
     }
     @PostMapping("buscarProducto")
-    ResponseEntity<?> buscarProducto(@RequestBody InventarioDto inventario) {
+    ResponseEntity<?> buscarProducto(@RequestBody InventarioRequest inventario) {
         try {
             log.info("Ingresando a buscar inventario con nombre " + inventario.getProducto());
-            return ok(inventarioService.findByFechaInicioAndProducto(inventario.getFecha(), inventario.getProducto()));
+            return ok(inventarioService.findByProductoAndFechaGreaterThan(inventario.getProducto(), inventario.getFecha()));
         }catch (Exception e){
             log.info("Error inesperado {}", e);
 

@@ -1,4 +1,4 @@
-package com.upb.upb.dto;
+package com.upb.upb.request;
 
 import lombok.*;
 
@@ -9,9 +9,9 @@ import java.time.LocalDate;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class InventarioDto {
+public class InventarioRequest {
     private LocalDate fecha;
-    private Double precio;
+    private String producto;
 }
 
 

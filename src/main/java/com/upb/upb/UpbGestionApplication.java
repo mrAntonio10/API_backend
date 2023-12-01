@@ -11,6 +11,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 
 @Slf4j
 @SpringBootApplication
@@ -48,7 +51,8 @@ public class UpbGestionApplication implements CommandLineRunner {
 		if(inventarioRepository.findAll().isEmpty()) {
 			Inventario inventario = new Inventario();
 			inventario.setProducto("Coca Prueba");
-			inventario.setFecha("2023-11-27");
+			LocalDate date1 = LocalDate.of(2021, Month.JANUARY, 1);
+			inventario.setFecha(date1);
 			inventario.setPrecio(20.00);
 			inventarioRepository.save(inventario);
 

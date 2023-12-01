@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class Inventario implements Serializable {
     private Long id;
 
     @Column(name = "FECHA")
-    private String fecha;
+    private LocalDate fecha;
 
     @Column(name = "PRODUCTO")
     private String producto;
