@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
+import java.util.List;
 
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
@@ -16,4 +17,8 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     double getEstadoProducto(
             @Param("producto") String producto,
             @Param("fecha") String fecha);
+
+    @Query("SELECT DISTINCT p.producto " +
+            "FROM Producto p ")
+    List<String> getUniqueProducts();
 }
