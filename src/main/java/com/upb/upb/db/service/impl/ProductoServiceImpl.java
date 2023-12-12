@@ -23,7 +23,6 @@ public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
-
     @Override
     public List<String> getUniqueProducts() {
         return productoRepository.getUniqueProducts();

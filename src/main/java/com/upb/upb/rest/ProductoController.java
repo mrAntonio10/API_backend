@@ -3,14 +3,13 @@ package com.upb.upb.rest;
 
 import com.upb.upb.db.model.Producto;
 import com.upb.upb.db.service.ProductoService;
-import com.upb.upb.db.service.ProductoTrimestreService;
+import com.upb.upb.db.service.ProductoTrimestreExamenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -31,7 +30,7 @@ public class ProductoController {
     ProductoService productoService;
 
     @Autowired
-    ProductoTrimestreService productoTrimestreService;
+    ProductoTrimestreExamenService productoTrimestreService;
 
     @GetMapping
     public ResponseEntity<List<String>> getInitialData() {

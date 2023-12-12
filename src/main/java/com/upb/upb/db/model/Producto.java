@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Productos")
 public class Producto implements Serializable {
+
     @Id
     @SequenceGenerator(name = "SEQ_PRODUCT_ID_GENERATOR", sequenceName = "SEQ_PRODUCT_ID", allocationSize = 1, initialValue = 1000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PRODUCT_ID_GENERATOR")

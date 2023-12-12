@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "PRODUCTO_TRIMESTRE")
 public class ProductoTrimestre implements Serializable {
+
     @Id
     @SequenceGenerator(name = "SEQ_PRODUCT_TRIMESTRE_ID_GENERATOR", sequenceName = "SEQ_PRODUCT_TRIMESTRE_ID", allocationSize = 1, initialValue = 1000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PRODUCT_TRIMESTRE_ID_GENERATOR")
