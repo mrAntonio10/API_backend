@@ -1,16 +1,13 @@
 package com.upb.upb.rest;
 
-
-import com.upb.upb.db.model.Producto;
-import com.upb.upb.db.service.ProductoService;
-import com.upb.upb.db.service.ProductoTrimestreExamenService;
+import com.upb.upb.db.service.UsuarioService;
+import com.upb.upb.dto.UsuarioDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -29,18 +26,16 @@ import static org.springframework.http.ResponseEntity.ok;
 public class UsuarioController {
 
     @Autowired
-    ProductoService productoService;
+    UsuarioService usuarioService;
 
-    @Autowired
-    ProductoTrimestreExamenService productoTrimestreService;
-
-    @GetMapping
-    public ResponseEntity<List<String>> getInitialData() {
+    @PostMapping("/login")
+    public ResponseEntity<String> getInitialData(
+            @RequestBody UsuarioDto usuario
+    ) {
         try{
-            log.info("Esta haciendo mal xd");
-            return ok(productoService.getUniqueProducts());
+            return ok(usuarioService.verificarCredenciales(usuario));
         } catch (NoSuchElementException e){
-            log.info("Error - producto/fecha no encontrad@ {}", e);
+            log.info("Error - usuario no encontrado {}", e);
             HttpStatus status = HttpStatus.NOT_FOUND;
             return ResponseEntity
                     .status(status)
@@ -51,38 +46,6 @@ public class UsuarioController {
             return ResponseEntity
                     .status(status)
                     .body(null);
-        }
-    }
-
-    @GetMapping("/{producto}")
-    public ResponseEntity<?> getPreciosTrimestre(
-            @PathVariable String producto
-    ){
-        try{
-            log.info("realizaondo busqeuda");
-            return ok(productoTrimestreService.getProductosPorTrimestre(producto));
-        } catch (NoSuchElementException e){
-            log.info("Error - producto/fecha no encontrad@ {}", e);
-            HttpStatus status = HttpStatus.NOT_FOUND;
-            return ResponseEntity
-                    .status(status)
-                    .body(null);
-        } catch (Exception e){
-            log.info("Error inesperado {}", e);
-            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-            return ResponseEntity
-                    .status(status)
-                    .body(null);
-        }
-    }
-
-    @PostMapping("/agregar")
-    public String insertProduct(@RequestBody Producto producto) {
-        try{
-            productoService.saveProduct(producto);
-            return "agregacion exitosa";
-        } catch (Exception e){
-            return "Ha surgido un error inseperado";
         }
     }
 }

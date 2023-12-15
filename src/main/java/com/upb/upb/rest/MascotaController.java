@@ -18,7 +18,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @Slf4j
 @RestController
-@RequestMapping("/v1/mascota")
+@RequestMapping("/v1/mascotas")
 @CrossOrigin(
         origins = "*",
         methods = {
@@ -39,10 +39,10 @@ public class MascotaController {
             @PathVariable String nombre
     ) {
         try{
-            log.info("realizaondo busqeuda");
+            log.info("busqueda de mascotas por su nombre");
             return ok(mascotaService.getMascotasPorNombre(nombre));
         } catch (NoSuchElementException e){
-            log.info("Error - producto/fecha no encontrad@ {}", e);
+            log.info("Error - mascota no encontrad@ {}", e);
             HttpStatus status = HttpStatus.NOT_FOUND;
             return ResponseEntity
                     .status(status)
@@ -61,10 +61,10 @@ public class MascotaController {
             @PathVariable String propietario
     ) {
         try{
-            log.info("realizaondo busqeuda");
+            log.info("busqueda de mascotas por propietario");
             return ok(usuarioService.getMascotaPorPropietario(propietario));
         } catch (NoSuchElementException e){
-            log.info("Error - producto/fecha no encontrad@ {}", e);
+            log.info("Error - no se encontro mascota con el propietario {}", e);
             HttpStatus status = HttpStatus.NOT_FOUND;
             return ResponseEntity
                     .status(status)
@@ -83,10 +83,10 @@ public class MascotaController {
             @PathVariable String id
     ) {
         try{
-            log.info("realizaondo busqeuda");
+            log.info("historial de mascotas por ID");
             return ok(mascotaService.getHistorialVisitasMascota(Integer.parseInt(id)));
         } catch (NoSuchElementException e){
-            log.info("Error - producto/fecha no encontrad@ {}", e);
+            log.info("Error - no se encontro mascota con el id {}", e);
             HttpStatus status = HttpStatus.NOT_FOUND;
             return ResponseEntity
                     .status(status)
