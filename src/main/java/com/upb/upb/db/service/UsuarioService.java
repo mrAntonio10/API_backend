@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface UsuarioService {
 
-    List<MascotaDto> getMascotaPorPropietario(String nombre);
+    List<MascotaDto> getMascotasPorPropietario(String nombre);
 
-    String verificarCredenciales(UsuarioDto usuarioDto);
+    UsuarioDto verificarCredenciales(UsuarioDto usuarioDto);
 
 }

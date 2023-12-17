@@ -1,12 +1,18 @@
 package com.upb.upb.db.service;
 
+import com.upb.upb.db.model.InfoMascota;
+import com.upb.upb.db.model.RegistroVisita;
 import com.upb.upb.dto.MascotaDto;
 import com.upb.upb.dto.VisitaDto;
 
 import java.util.List;
 
 public interface MascotaService {
-    List<MascotaDto> getMascotasPorNombre(String nombre);
+    MascotaDto getMascotasPorNombre(String nombre);
 
-    List<VisitaDto> getHistorialVisitasMascota(int id);
+    List<VisitaDto> getHistorialVisitasMascota(long id);
+
+    InfoMascota save(MascotaDto mascotaDto);
+
+    RegistroVisita saveRegistro(VisitaDto visitaDto);
 }

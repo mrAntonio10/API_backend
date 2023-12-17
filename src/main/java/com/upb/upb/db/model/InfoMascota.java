@@ -14,7 +14,7 @@ import java.util.Date;
 public class InfoMascota implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "SEQ_PET_ID_GENERATOR", sequenceName = "SEQ_PET_ID", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "SEQ_PET_ID_GENERATOR", sequenceName = "SEQ_PET_ID", allocationSize = 1, initialValue = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PET_ID_GENERATOR")
     @Column(name = "ID")
     private Long id;

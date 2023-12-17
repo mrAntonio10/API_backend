@@ -29,7 +29,7 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> getInitialData(
+    public ResponseEntity<UsuarioDto> getInitialData(
             @RequestBody UsuarioDto usuario
     ) {
         try{

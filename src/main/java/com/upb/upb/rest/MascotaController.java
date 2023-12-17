@@ -1,6 +1,8 @@
 package com.upb.upb.rest;
 
 
+import com.upb.upb.db.model.InfoMascota;
+import com.upb.upb.db.model.RegistroVisita;
 import com.upb.upb.db.service.MascotaService;
 import com.upb.upb.db.service.UsuarioService;
 import com.upb.upb.dto.MascotaDto;
@@ -34,8 +36,8 @@ public class MascotaController {
     @Autowired
     UsuarioService usuarioService;
 
-    @GetMapping("/{nombre}")
-    public ResponseEntity<List<MascotaDto>> getMascotaPorNombre(
+    @GetMapping("/petName/{nombre}")
+    public ResponseEntity<MascotaDto> getMascotaPorNombre(
             @PathVariable String nombre
     ) {
         try{
@@ -56,13 +58,13 @@ public class MascotaController {
         }
     }
 
-    @GetMapping("/{propietario}")
+    @GetMapping("/petOwner/{propietario}")
     public ResponseEntity<List<MascotaDto>> getMascotaPorPropietario(
             @PathVariable String propietario
     ) {
         try{
             log.info("busqueda de mascotas por propietario");
-            return ok(usuarioService.getMascotaPorPropietario(propietario));
+            return ok(usuarioService.getMascotasPorPropietario(propietario));
         } catch (NoSuchElementException e){
             log.info("Error - no se encontro mascota con el propietario {}", e);
             HttpStatus status = HttpStatus.NOT_FOUND;
@@ -78,15 +80,59 @@ public class MascotaController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/logs/{id}")
     public ResponseEntity<List<VisitaDto>> getHistorialVisitasMascota(
             @PathVariable String id
     ) {
         try{
             log.info("historial de mascotas por ID");
-            return ok(mascotaService.getHistorialVisitasMascota(Integer.parseInt(id)));
+            return ok(mascotaService.getHistorialVisitasMascota(Long.parseLong(id)));
         } catch (NoSuchElementException e){
             log.info("Error - no se encontro mascota con el id {}", e);
+            HttpStatus status = HttpStatus.NOT_FOUND;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        } catch (Exception e){
+            log.info("Error inesperado {}", e);
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        }
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<InfoMascota> save(
+            @RequestBody MascotaDto mascotaDto
+    ) {
+        try{
+            log.info("agregar / modificar mascotas");
+            return ok(mascotaService.save(mascotaDto));
+        } catch (NoSuchElementException e){
+            log.info("Error - no se pudo agregar / modificar mascota {}", e);
+            HttpStatus status = HttpStatus.NOT_FOUND;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        } catch (Exception e){
+            log.info("Error inesperado {}", e);
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        }
+    }
+
+    @PostMapping("/registro/")
+    public ResponseEntity<RegistroVisita> saveRegistro(
+            @RequestBody VisitaDto visitaDto
+    ) {
+        try{
+            log.info("agregar / modificar registros");
+            return ok(mascotaService.saveRegistro(visitaDto));
+        } catch (NoSuchElementException e){
+            log.info("Error - no se pudo agregar / modificar mascota {}", e);
             HttpStatus status = HttpStatus.NOT_FOUND;
             return ResponseEntity
                     .status(status)
