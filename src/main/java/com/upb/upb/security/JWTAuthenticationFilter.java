@@ -2,6 +2,7 @@ package com.upb.upb.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 
+@Slf4j
 @AllArgsConstructor
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -43,9 +45,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult) throws IOException, ServletException {
         InfoUserDetailsImpl infoUserDetails = (InfoUserDetailsImpl)authResult.getPrincipal();
         String token = TokenUtils.createToken(infoUserDetails.getNombre(), infoUserDetails.getUsername() );
-
-        response.addHeader("Authorization", "Bearer "+token);
+        log.info("tokencreado: "+token);
+        response.addHeader("Authorization", "Bearer " + token);
+        response.addHeader("Vary", "Access-Control-Request-Headers");
         response.getWriter().flush();
+
         super.successfulAuthentication(request, response, chain, authResult);
     }
 
