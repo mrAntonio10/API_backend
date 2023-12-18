@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<InfoUsuario, Long> {
@@ -18,4 +19,9 @@ public interface UsuarioRepository extends JpaRepository<InfoUsuario, Long> {
             @Param("username") String username,
             @Param("password") String password,
             PageRequest pageable);
+
+    @Query("    SELECT d " +
+            "   FROM InfoUsuario  d " +
+            "   WHERE d.username=:username")
+    Optional<InfoUsuario> findByUsername(@Param("username") String username);
 }
