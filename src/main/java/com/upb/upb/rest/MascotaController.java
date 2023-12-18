@@ -36,8 +36,52 @@ public class MascotaController {
     @Autowired
     UsuarioService usuarioService;
 
+
+    @GetMapping("/all")
+    public ResponseEntity<List<MascotaDto>> findAllMascotas(
+    ) {
+        try{
+            log.info("busqueda de mascotas por su nombre");
+            return ok(mascotaService.getAllMascotas());
+        } catch (NoSuchElementException e){
+            log.info("Error - mascota no encontrad@ {}", e);
+            HttpStatus status = HttpStatus.NOT_FOUND;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        } catch (Exception e){
+            log.info("Error inesperado {}", e);
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        }
+    }
+
+    @GetMapping("/petId/{id}")
+    public ResponseEntity<MascotaDto> getMascotaPorId(
+            @PathVariable String id
+    ) {
+        try{
+            log.info("busqueda de mascotas por su nombre");
+            return ok(mascotaService.getMascotaById(Long.parseLong(id)));
+        } catch (NoSuchElementException e){
+            log.info("Error - mascota no encontrad@ {}", e);
+            HttpStatus status = HttpStatus.NOT_FOUND;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        } catch (Exception e){
+            log.info("Error inesperado {}", e);
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        }
+    }
+
     @GetMapping("/petName/{nombre}")
-    public ResponseEntity<MascotaDto> getMascotaPorNombre(
+    public ResponseEntity<List<MascotaDto>> getMascotaPorNombre(
             @PathVariable String nombre
     ) {
         try{

@@ -15,12 +15,12 @@ public interface MascotaRepository extends JpaRepository<InfoMascota, Long> {
     @Query("    SELECT new com.upb.upb.dto.MascotaDto(d)" +
             "   FROM InfoMascota d " +
             "   WHERE d.nombre = :nombreMascota")
-    Optional<MascotaDto> getPetByName(
+    Optional<List<MascotaDto>> getPetByName(
             @Param("nombreMascota") String nombreMascota);
 
     @Query("    SELECT new com.upb.upb.dto.MascotaDto(d)" +
             "   FROM InfoMascota d " +
-            "   WHERE d.propietario.username = :nombrePropietario")
+            "   WHERE d.propietario.username LIKE %:nombrePropietario%")
     Optional<List<MascotaDto>> getPetByOwnersName(
             @Param("nombrePropietario") String nombrePropietario);
 

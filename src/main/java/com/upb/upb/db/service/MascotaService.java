@@ -8,7 +8,12 @@ import com.upb.upb.dto.VisitaDto;
 import java.util.List;
 
 public interface MascotaService {
-    MascotaDto getMascotasPorNombre(String nombre);
+
+    List<MascotaDto> getAllMascotas();
+
+    MascotaDto getMascotaById(Long id);
+
+    List<MascotaDto> getMascotasPorNombre(String nombre);
 
     List<VisitaDto> getHistorialVisitasMascota(long id);
 

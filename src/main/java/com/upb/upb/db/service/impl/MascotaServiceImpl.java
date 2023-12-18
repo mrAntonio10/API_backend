@@ -15,8 +15,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -32,9 +34,26 @@ public class MascotaServiceImpl implements MascotaService {
     private RegistroVisitaRepository registroVisitaRepository;
 
     @Override
-    public MascotaDto getMascotasPorNombre(String nombre) {
-        Optional<MascotaDto> mascotaDto = mascotaRepository.getPetByName(nombre);
-        MascotaDto mascotas = null;
+    public List<MascotaDto> getAllMascotas() {
+        List<MascotaDto> mascotasList = mascotaRepository.findAll()
+                .stream().map(MascotaDto::new)
+                .collect(Collectors.toList());
+        return mascotasList;
+    }
+
+    @Override
+    public MascotaDto getMascotaById(Long id) {
+        Optional<InfoMascota> mascotaOpt = mascotaRepository.findById(id);
+        if (!mascotaOpt.isPresent()) {
+            throw new RuntimeException("No se encontro el propietario");
+        }
+        return new MascotaDto(mascotaOpt.get());
+    }
+
+    @Override
+    public List<MascotaDto> getMascotasPorNombre(String nombre) {
+        Optional<List<MascotaDto>> mascotaDto = mascotaRepository.getPetByName(nombre);
+        List<MascotaDto> mascotas = null;
         if (mascotaDto.isPresent()) {
             mascotas =  mascotaDto.get();
         }
