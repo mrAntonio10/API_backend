@@ -117,4 +117,9 @@ public class MascotaServiceImpl implements MascotaService {
         log.info(String.valueOf(registroVisita));
         return null;
     }
+
+//    @Override
+//    public void dropRegistro(Long visitaDto) {
+//        return registroVisitaRepository.deleteById(visitaDto);
+//    }
 }

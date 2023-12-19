@@ -33,6 +33,7 @@ public class UsuarioController {
             @RequestBody UsuarioDto usuario
     ) {
         try{
+            log.info("Data recibida" + usuario.getUsername()+ " " + usuario.getPassword());
             return ok(usuarioService.verificarCredenciales(usuario));
         } catch (NoSuchElementException e){
             log.info("Error - usuario no encontrado {}", e);

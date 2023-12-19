@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @Slf4j
 @AllArgsConstructor
-public class WebSecurityConfig {
+public class WebSecurityConfig extends WebMvcConfigurerAdapter{
 
     private final UserDetailsService userDetailsService;
     private final JWTAutherizationFilter jwtAutherizationFilter;
@@ -36,7 +36,7 @@ public class WebSecurityConfig {
 
         return http
                 .csrf().disable()
-                .cors().disable() //agregado
+                .cors().and() //agregado
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
@@ -82,7 +82,6 @@ public class WebSecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
-
             }
         };
     }

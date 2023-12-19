@@ -20,4 +20,6 @@ public interface MascotaService {
     InfoMascota save(MascotaDto mascotaDto);
 
     RegistroVisita saveRegistro(VisitaDto visitaDto);
+
+//    void dropRegistro(VisitaDto visitaDto);
 }
