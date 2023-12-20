@@ -130,7 +130,7 @@ public class MascotaController {
     ) {
         try{
             log.info("historial de mascotas por ID");
-            return ok(mascotaService.getHistorialVisitasMascota(Long.parseLong(id)));
+            return ok(mascotaService.getRegistrosMascota(Long.parseLong(id)));
         } catch (NoSuchElementException e){
             log.info("Error - no se encontro mascota con el id {}", e);
             HttpStatus status = HttpStatus.NOT_FOUND;
@@ -190,4 +190,49 @@ public class MascotaController {
         }
     }
 
+    @GetMapping("/deleteMascota/{id}")
+    public ResponseEntity<?> deleteMascota (
+            @PathVariable String id
+    ) {
+        try{
+            log.info("eliminar registros por id");
+            mascotaService.deleteMascota(Long.parseLong(id));
+            return ok(null);
+        } catch (NoSuchElementException e){
+            log.info("Error - no se pudo agregar / modificar mascota {}", e);
+            HttpStatus status = HttpStatus.NOT_FOUND;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        } catch (Exception e){
+            log.info("Error inesperado {}", e);
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        }
+    }
+
+    @GetMapping("/deleteRegistro/{id}")
+    public ResponseEntity<?> deleteRegistroMascota (
+            @PathVariable String id
+    ) {
+        try{
+            log.info("agregar / modificar registros");
+            mascotaService.deleteRegistroMascota(Long.parseLong(id));
+            return ok(null);
+        } catch (NoSuchElementException e){
+            log.info("Error - no se pudo agregar / modificar mascota {}", e);
+            HttpStatus status = HttpStatus.NOT_FOUND;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        } catch (Exception e){
+            log.info("Error inesperado {}", e);
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity
+                    .status(status)
+                    .body(null);
+        }
+    }
 }

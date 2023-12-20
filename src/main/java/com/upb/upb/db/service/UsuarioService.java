@@ -1,5 +1,6 @@
 package com.upb.upb.db.service;
 
+import com.upb.upb.db.model.InfoUsuario;
 import com.upb.upb.dto.MascotaDto;
 import com.upb.upb.dto.UsuarioDto;
 
@@ -11,4 +12,7 @@ public interface UsuarioService {
 
     UsuarioDto verificarCredenciales(UsuarioDto usuarioDto);
 
+    void eliminarUsuario(Long id);
+
+    InfoUsuario save(UsuarioDto dto);
 }

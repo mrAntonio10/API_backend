@@ -15,11 +15,13 @@ public interface MascotaService {
 
     List<MascotaDto> getMascotasPorNombre(String nombre);
 
-    List<VisitaDto> getHistorialVisitasMascota(long id);
+    List<VisitaDto> getRegistrosMascota(long id);
+
+    void deleteMascota(Long id);
+
+    void deleteRegistroMascota(Long id);
 
     InfoMascota save(MascotaDto mascotaDto);
 
     RegistroVisita saveRegistro(VisitaDto visitaDto);
-
-//    void dropRegistro(VisitaDto visitaDto);
 }

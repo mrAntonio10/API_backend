@@ -61,13 +61,23 @@ public class MascotaServiceImpl implements MascotaService {
     }
 
     @Override
-    public List<VisitaDto> getHistorialVisitasMascota(long id) {
+    public List<VisitaDto> getRegistrosMascota(long id) {
         Optional<List<VisitaDto>> list = registroVisitaRepository.getPetsHistoryByID(id);
         List<VisitaDto> dtoList = null;
         if (list.isPresent()) {
             dtoList =  list.get();
         }
         return dtoList;
+    }
+
+    @Override
+    public void deleteMascota(Long id) {
+        mascotaRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteRegistroMascota(Long id) {
+        registroVisitaRepository.deleteById(id);
     }
 
     @Override
